@@ -1,0 +1,10 @@
+.outline-card {
+  font-family: "DM Sans", sans-serif;
+  background-color: rgb(213, 215, 218);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
