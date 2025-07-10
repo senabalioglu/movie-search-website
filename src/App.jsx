@@ -9,7 +9,7 @@ export default function App() {
         <Link to="/home">Ana Sayfa</Link> | <Link to="/details">Detay Sayfası</Link>
       </nav>
       <hr />
-      <Outlet /> {/* Alt sayfalar buraya gelecek */}
+      <Outlet />
     </div>
   );
 }

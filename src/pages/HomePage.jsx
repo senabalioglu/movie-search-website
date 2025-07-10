@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../components/Input/Input";
 import Card from "../components/Card/Card";
+import DetailPage from "./DetailPage";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -17,6 +18,11 @@ function HomePage() {
     const data = await res.json();
     setMovies(data.results);
   };
+
+  const goToDetail = (movie) => {
+    navigate(`/details/${movie.id}`);
+  }
+  
   return (
     <>
       <div>
@@ -25,13 +31,18 @@ function HomePage() {
           onChangeInput={(e) => setQuery(e.target.value)}
         />
         <h1>Home Page</h1>
-        <ul>
+        <div className="container" >
           {movies.map((movie) => (
-            <li key={movie.id}>
-              {movie.title} ({movie.release_date?.split("-")[0]})
-            </li>
+            <Card
+              navFunc={() => goToDetail(movie)}
+              itemId = {movie.id}
+              cardImg={movie.backdrop_path}
+              key={movie.id}
+              title={movie.title}
+              movieDate={movie.release_date?.split("-")[0]}
+            />
           ))}
-        </ul>
+        </div>
       </div>
     </>
   );
