@@ -30,7 +30,6 @@ function HomePage() {
           onSearch={searchMovies}
           onChangeInput={(e) => setQuery(e.target.value)}
         />
-        <h1>Home Page</h1>
         <div className="container" >
           {movies.map((movie) => (
             <Card

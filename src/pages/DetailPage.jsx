@@ -24,23 +24,51 @@ function DetailPage() {
   }, [id]);
 
   return (
-  <>
-    {movie ? (
-      <div>
+    <>
+      {movie ? (
+        <>
+          <div className="detail-container">
+            <div className="vote-outline">
+              <img
+                className="movie-image"
+                src={`https://image.tmdb.org/t/p/w200${movie.backdrop_path}`}
+              />
+              <div className="inner-vote-container">
+                <h1>{movie.title}</h1>
+                <div className="votes">
+                  <p style={{ marginRight: 15 }}>{movie.vote_average}</p>
+                  <p>{movie.vote_count}</p>
+                </div>
+              </div>
+            </div>
+            <div style={{ marginLeft: 15}}>
+              <p>{movie.overview}</p>
+              <div>
+                <h2>Genres</h2>
+                <div>
+                  {movie.genres.map((genre, index) => {
+                    return <li key={index}>{genre.name}</li>;
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <p>Yükleniyor...</p>
+      )}
+    </>
+  );
+}
+
+/*
+<div>
         <div style={{ flexDirection: "row" }}>
-          <h1>{movie.title}</h1>
+          
           <div style={{ flex: 1, flexDirection: "row" }}>
-            <p>{movie.vote_average}</p>
-            <p>{movie.vote_count}</p>
+            
           </div>
         </div>
       </div>
-    ) : (
-      <p>Yükleniyor...</p>
-    )}
-  </>
-);
-
-}
-
+*/
 export default DetailPage;
