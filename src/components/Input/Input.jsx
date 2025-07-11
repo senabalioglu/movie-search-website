@@ -7,7 +7,7 @@ function Input({onChangeInput, onSearch}) {
       <div className='search-input-div' >
           <CiSearch style={{fontSize: 18}} />
           <input onChange={onChangeInput} className="search-input" placeholder={  "Search"} name="myInput" />
-          <button onClick={onSearch} >Ara</button>
+          <button onClick={onSearch} >Search</button>
       </div>
     </>
   );

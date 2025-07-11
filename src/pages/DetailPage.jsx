@@ -28,28 +28,55 @@ function DetailPage() {
       {movie ? (
         <>
           <div className="detail-container">
-            <div className="vote-outline">
-              <img
-                className="movie-image"
-                src={`https://image.tmdb.org/t/p/w200${movie.backdrop_path}`}
-              />
-              <div className="inner-vote-container">
-                <h1>{movie.title}</h1>
-                <div className="votes">
-                  <p style={{ marginRight: 15 }}>{movie.vote_average}</p>
-                  <p>{movie.vote_count}</p>
+            <div className="top-container">
+              <div className="vote-outline">
+                <img
+                  className="movie-image"
+                  src={`https://image.tmdb.org/t/p/w200${movie.backdrop_path}`}
+                />
+                <div className="inner-vote-container">
+                  <h1>{movie.title}</h1>
+                  <div className="votes">
+                    <p style={{ marginRight: 15 }}>{movie.vote_average}</p>
+                    <p>{movie.vote_count}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ marginLeft: 15 }}>
+                <p>{movie.overview}</p>
+                <div className="info-div">
+                  <div>
+                    <h2>Genres</h2>
+                    {movie.genres.map((genre, index) => {
+                      return <li key={index}>{genre.name}</li>;
+                    })}
+                  </div>
+                  <div>
+                    <h2>Collection</h2>
+                    <h4> {movie.belongs_to_collection.name} </h4>
+                  </div>
+                  <div>
+                    <h2>Popularity</h2>
+                    <h4> {movie.popularity} </h4>
+                  </div>
                 </div>
               </div>
             </div>
-            <div style={{ marginLeft: 15}}>
-              <p>{movie.overview}</p>
-              <div>
-                <h2>Genres</h2>
-                <div>
-                  {movie.genres.map((genre, index) => {
-                    return <li key={index}>{genre.name}</li>;
-                  })}
-                </div>
+
+            <div>
+              <h1>Production Companies</h1>
+              <div className="companies">
+                {movie.production_companies.map((companies, index) => (
+                  <>
+                    <div>
+                      <p> {companies.name} </p>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w200${companies.logo_path}`}
+                      />
+                    </div>
+                  </>
+                ))}
               </div>
             </div>
           </div>
@@ -62,13 +89,6 @@ function DetailPage() {
 }
 
 /*
-<div>
-        <div style={{ flexDirection: "row" }}>
-          
-          <div style={{ flex: 1, flexDirection: "row" }}>
-            
-          </div>
-        </div>
-      </div>
+
 */
 export default DetailPage;
