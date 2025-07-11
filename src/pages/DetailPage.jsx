@@ -63,7 +63,7 @@ function DetailPage() {
                 </div>
               </div>
             </div>
-
+            
             <div>
               <h1>Production Companies</h1>
               <div className="companies">
