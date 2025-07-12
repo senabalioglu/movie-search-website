@@ -35,16 +35,20 @@ function DetailPage() {
                   src={`https://image.tmdb.org/t/p/w200${movie.backdrop_path}`}
                 />
                 <div className="inner-vote-container">
-                  <h1>{movie.title}</h1>
+                  <h1 style={{fontSize: 55}} >{movie.title || movie.original_title }</h1>
                   <div className="votes">
-                    <p style={{ marginRight: 15 }}>{movie.vote_average}</p>
-                    <p>{movie.vote_count}</p>
+                    <div className="vote" >
+                      <p style={{ fontSize: 30}}>{movie.vote_average}</p>
+                    </div>
+                    <div className="vote" >
+                      <p style={{ fontSize: 30}} >{movie.vote_count}</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div style={{ marginLeft: 15 }}>
-                <p>{movie.overview}</p>
+                <p style={{fontSize: 30}} >{movie.overview}</p>
                 <div className="info-div">
                   <div>
                     <h2>Genres</h2>
@@ -54,22 +58,22 @@ function DetailPage() {
                   </div>
                   <div>
                     <h2>Collection</h2>
-                    <h4> {movie.belongs_to_collection.name} </h4>
+                    <h3> { movie?.belongs_to_collection?.name ? movie.belongs_to_collection.name : "null" } </h3>
                   </div>
                   <div>
                     <h2>Popularity</h2>
-                    <h4> {movie.popularity} </h4>
+                    <h3> {movie.popularity} </h3>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div>
+            <div style={{margin: 15}} >
               <h1>Production Companies</h1>
               <div className="companies">
                 {movie.production_companies.map((companies, index) => (
                   <>
-                    <div>
+                    <div className="company" >
                       <p> {companies.name} </p>
                       <img
                         src={`https://image.tmdb.org/t/p/w200${companies.logo_path}`}

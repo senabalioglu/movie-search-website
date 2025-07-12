@@ -1,12 +1,13 @@
 .outline-card {
   font-family: "DM Sans", sans-serif;
-  background-color: rgb(213, 215, 218);
+  background-color: #9363ca;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   max-width: 210px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 15px;
+
 }
 /*
 style={{ maxWidth: 210, maxHeight: 230}} 
