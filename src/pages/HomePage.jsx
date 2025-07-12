@@ -30,16 +30,19 @@ function HomePage() {
           onSearch={searchMovies}
           onChangeInput={(e) => setQuery(e.target.value)}
         />
-        <div className="container" >
+        
+          <div className="container" >
           {movies.map((movie) => (
-            <Card
+            movie.backdrop_path !== null ?
+             <Card
               navFunc={() => goToDetail(movie)}
               itemId = {movie.id}
               cardImg={movie.backdrop_path}
               key={movie.id}
               title={movie.title}
               movieDate={movie.release_date?.split("-")[0]}
-            />
+            /> :
+            <></>
           ))}
         </div>
       </div>
