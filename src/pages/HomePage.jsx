@@ -22,7 +22,7 @@ function HomePage() {
   const goToDetail = (movie) => {
     navigate(`/details/${movie.id}`);
   }
-  
+
   return (
     <>
       <div>

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 function DetailPage() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+  const [imgPath, setImgPath] = useState("");
   const VITE_TMDB_KEY = "4809431e976e960f71c692b27469b8d2";
 
   useEffect(() => {
@@ -23,6 +24,23 @@ function DetailPage() {
       });
   }, [id]);
 
+  useEffect(() => {
+    if (movie?.backdrop_path) {
+      const path = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`;
+      document.body.style.backgroundImage = `url(${path})`;
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundRepeat = "no-repeat";
+      document.body.style.backgroundPosition = "center";
+      
+      return () => {
+        document.body.style.backgroundImage = "";
+        document.body.style.backgroundSize = "";
+        document.body.style.backgroundRepeat = "";
+        document.body.style.backgroundPosition = "";
+      };
+    }
+  }, [movie]);
+
   return (
     <>
       {movie ? (
@@ -32,7 +50,7 @@ function DetailPage() {
               <div className="vote-outline">
                 <img
                   className="movie-image"
-                  src={`https://image.tmdb.org/t/p/w200${movie.backdrop_path}`}
+                  src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                 />
                 <div className="inner-vote-container">
                   <h1 style={{ fontSize: 55 }}>
@@ -55,7 +73,11 @@ function DetailPage() {
                   <div>
                     <h2>Genres</h2>
                     {movie.genres.map((genre, index) => {
-                      return <li style={{fontSize: 25}} key={index}>{genre.name}</li>;
+                      return (
+                        <li style={{ fontSize: 25 }} key={index}>
+                          {genre.name}
+                        </li>
+                      );
                     })}
                   </div>
                   <div>
