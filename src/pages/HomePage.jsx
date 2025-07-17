@@ -37,7 +37,7 @@ function HomePage() {
              <Card
               navFunc={() => goToDetail(movie)}
               itemId = {movie.id}
-              cardImg={movie.backdrop_path}
+              cardImg={movie.poster_path}
               key={movie.id}
               title={movie.title}
               movieDate={movie.release_date?.split("-")[0]}

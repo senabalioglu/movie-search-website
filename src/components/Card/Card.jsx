@@ -6,12 +6,11 @@ function Card({ navFunc, title, movieDate,cardImg, itemId }) {
 
   return (
     <>
-      <div className="outline-card">
+      <div style={{margin: 15}} >
         <img 
-        className="card-image"
-        src={`https://image.tmdb.org/t/p/w200${cardImg}`}>
+        src={`https://image.tmdb.org/t/p/w300${cardImg}`}>
         </img>
-        <div style={{margin: 10, marginBottom: 20}} >
+        <div>
             <h3>{ title.length < 25 ? title : title.slice(0, 20) + "..."}</h3>
           <p>{ movieDate != "" ?  (movieDate) : "null" }</p>
           <Button onPress={navFunc} />

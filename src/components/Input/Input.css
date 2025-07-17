@@ -6,33 +6,46 @@
   outline: none;
   margin-left: 8px;
   flex: 1;
-  background-color: rgb(226, 210, 241);
+  background-color: rgb(230, 230, 230);
 }
 
 .search-input-div {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 1px solid rgb(87, 46, 121);
+  border-bottom: 1px solid rgb(133, 133, 133);
   padding: 5px;
-  border-radius: 4px;
   min-width: 500px;
   margin-bottom: 20px;
 }
 
 button {
-  padding: 10px 16px;
-  margin-left: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-left: none;
-  border-radius: 8px;
+  max-width: 110px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000; 
+  color: #000;
+  margin: 10px;
   cursor: pointer;
-  background-color: #9363ca;
-  color: white;
-  transition: background-color 0.3s ease;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -.8px;
+  line-height: 24px;
+}
+
+button:focus {
+  color: #171e29;
 }
 
 button:hover {
-  background-color: #674786;
+  border-color: rgb(151, 151, 151);
+  color: rgb(151, 151, 151);
+  fill: rgb(151, 151, 151);
+}
+
+button:active {
+  border-color: rgb(151, 151, 151);
+  color: rgb(151, 151, 151);
+  fill: rgb(151, 151, 151);
 }
