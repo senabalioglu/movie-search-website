@@ -5,6 +5,36 @@ import Card from "../components/Card/Card";
 import DetailPage from "./DetailPage";
 
 function HomePage() {
+
+  let mouseCursor = document.querySelector('.cursor');
+  let navInput = document.querySelectorAll('.search-input-div');
+  let navButton = document.querySelectorAll('.detail-button');
+
+  window.addEventListener('mousemove', cursor);
+
+  function cursor(e){
+    mouseCursor.style.top = e.pageY + 'px';
+    mouseCursor.style.left = e.pageX + 'px';
+  }
+
+  navInput.forEach(input => {
+    input.addEventListener('mouseleave', () => {
+      mouseCursor.classList.remove("input-grow");
+    });
+    input.addEventListener('mouseover', () => {
+      mouseCursor.classList.add("input-grow");
+    });
+  });
+
+  navButton.forEach(buttons => {
+    buttons.addEventListener('mouseleave', () => {
+      mouseCursor.classList.remove("input-grow");
+    });
+    buttons.addEventListener('mouseover', () => {
+      mouseCursor.classList.add("input-grow");
+    });
+  });
+
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
@@ -26,7 +56,9 @@ function HomePage() {
   return (
     <>
       <div>
+        <div className="cursor" ></div>
         <Input
+          className={"search-input-div"}
           onSearch={searchMovies}
           onChangeInput={(e) => setQuery(e.target.value)}
         />
@@ -35,6 +67,7 @@ function HomePage() {
           {movies.map((movie) => (
             movie.backdrop_path !== null ?
              <Card
+              className={"detail-button"}
               navFunc={() => goToDetail(movie)}
               itemId = {movie.id}
               cardImg={movie.poster_path}

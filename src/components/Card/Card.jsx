@@ -2,7 +2,7 @@ import "./Card.css";
 import plcImg from "../../assets/placeholder/asset-img.jpg";
 import Button from "../Button/Button";
 
-function Card({ navFunc, title, movieDate,cardImg, itemId }) {
+function Card({ navFunc, title, movieDate,cardImg, className }) {
 
   return (
     <>
@@ -13,7 +13,7 @@ function Card({ navFunc, title, movieDate,cardImg, itemId }) {
         <div>
             <h3>{ title.length < 25 ? title : title.slice(0, 20) + "..."}</h3>
           <p>{ movieDate != "" ?  (movieDate) : "null" }</p>
-          <Button onPress={navFunc} />
+          <Button buttonClassName={className} onPress={navFunc} />
         </div>
       </div>
     </>

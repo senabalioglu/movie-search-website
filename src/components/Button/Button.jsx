@@ -1,8 +1,8 @@
 import './Button.css'
 
-function Button({ onPress }) {
+function Button({ onPress, buttonClassName }) {
   return (
-    <div onClick={onPress} className="detail-button">
+    <div onClick={onPress} className={buttonClassName}>
       <p>Detayları gör</p>
     </div>
   );
