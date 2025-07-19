@@ -56,7 +56,12 @@ function DetailPage() {
                   <h1 style={{ fontSize: 50 }}>
                     {movie.title || movie.original_title}
                   </h1>
-                  <div className="votes-container" >
+                  
+                </div>
+              </div>
+              <div className="inner-vote-container">
+                <p style={{ fontSize: 30 }}>{movie.overview}</p>
+                <div className="votes-container" >
                     <div className="vote">
                       <p style={{fontSize: 20}} >{movie.vote_average}</p>
                     </div>
@@ -64,10 +69,6 @@ function DetailPage() {
                       <p style={{fontSize: 20}} >{movie.vote_count}</p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="inner-vote-container">
-                <p style={{ fontSize: 30 }}>{movie.overview}</p>
               </div>
             </div>
 

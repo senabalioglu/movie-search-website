@@ -93,7 +93,6 @@ p{
 .info-div{
   margin: 15px;
   border-radius: 15px;
-  border: 2px solid rgb(252, 252, 252);
   background: rgba(252, 252, 252, 0.4);
   padding-bottom: 25px;
   padding-left: 15px;
@@ -109,13 +108,13 @@ p{
 }
 
 .detail-container{
+  margin: 15px;
   background: rgba(255, 255, 255, 0.26);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px); 
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  border: 3px solid rgb(173, 173, 173);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   max-width: 1200px;
   transition: all 0.3s ease-in-out;
@@ -149,3 +148,4 @@ p {
   font-size: large;
   line-height: 1.6;
 }
+

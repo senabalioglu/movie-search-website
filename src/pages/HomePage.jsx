@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../components/Input/Input";
 import Card from "../components/Card/Card";
-import DetailPage from "./DetailPage";
 
 function HomePage() {
 
@@ -55,7 +54,6 @@ function HomePage() {
 
   return (
     <>
-    
       <div>
         <div className="cursor" ></div>
         <Input
