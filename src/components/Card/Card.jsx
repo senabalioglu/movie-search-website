@@ -14,11 +14,11 @@ function TiltedCard({
   imageSrc,
   altText = "Tilted card image",
   captionText = "",
-  containerHeight = "300px",
+  containerHeight = "",
   containerWidth = "100%",
-  imageHeight = "400px",
-  imageWidth = "400px",
-  scaleOnHover = 1.1,
+  imageHeight = "",
+  imageWidth = "",
+  scaleOnHover = 0.5,
   rotateAmplitude = 14,
   showMobileWarning = true,
   showTooltip = true,
@@ -137,22 +137,20 @@ function TiltedCard({
   );
 }
 
-function Card({ navFunc, title, movieDate, cardImg, className, blockClass }) {
+function Card({ navFunc, title, movieDate, cardImg, className }) {
   return (
     <>
-      <div className="block" style={{ margin: 15 }}>
-        <TiltedCard
+      <div className="block">
+        <div>
+          <TiltedCard
           imageSrc={`https://image.tmdb.org/t/p/w300${cardImg}`}
-          containerHeight="300px"
-          containerWidth="300px"
-          imageHeight="300px"
-          imageWidth="300px"
+          containerHeight="480px"
           rotateAmplitude={12}
-          scaleOnHover={1.2}
+          scaleOnHover={1.07}
           showMobileWarning={false}
-          
-          
+          captionText={title.length < 25 ? title : title.slice(0, 20) + "..."}
         />
+        </div>
         <div>
           <h3 style={{ color: "aliceblue" }}>
             {title.length < 25 ? title : title.slice(0, 20) + "..."}
