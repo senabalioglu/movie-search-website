@@ -55,6 +55,7 @@ function HomePage() {
 
   return (
     <>
+    
       <div>
         <div className="cursor" ></div>
         <Input
