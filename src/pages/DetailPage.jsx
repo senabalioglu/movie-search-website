@@ -6,6 +6,7 @@ function DetailPage() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [imgPath, setImgPath] = useState("");
+  const [creditsData, setCreditsData] = useState(null);
   const VITE_TMDB_KEY = "4809431e976e960f71c692b27469b8d2";
 
   useEffect(() => {
@@ -14,13 +15,29 @@ function DetailPage() {
         if (!res.ok) {
           throw new Error("Film bulunamadı!");
         }
-        return res.json(); // JSON parse ediliyor
+        return res.json();
       })
       .then((data) => {
         setMovie(data);
       })
       .catch((err) => {
         console.log("Hata:", err.message);
+      });
+
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${VITE_TMDB_KEY}`
+    )
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error("Oyuncu bilgileri alınamadı.");
+        }
+        return resp.json();
+      })
+      .then((creditsD) => {
+        setCreditsData(creditsD);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, [id]);
 
@@ -52,23 +69,22 @@ function DetailPage() {
                   className="movie-image"
                   src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                 />
-                <div className="votes" >
+                <div className="votes">
                   <h1 style={{ fontSize: 50 }}>
                     {movie.title || movie.original_title}
                   </h1>
-                  
                 </div>
               </div>
               <div className="inner-vote-container">
                 <p style={{ fontSize: 30 }}>{movie.overview}</p>
-                <div className="votes-container" >
-                    <div className="vote">
-                      <p style={{fontSize: 20}} >{movie.vote_average}</p>
-                    </div>
-                    <div className="vote">
-                      <p style={{fontSize: 20}} >{movie.vote_count}</p>
-                    </div>
+                <div className="votes-container">
+                  <div className="vote">
+                    <p style={{ fontSize: 20 }}>{movie.vote_average}</p>
                   </div>
+                  <div className="vote">
+                    <p style={{ fontSize: 20 }}>{movie.vote_count}</p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -110,6 +126,22 @@ function DetailPage() {
                           src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
                         />
                       )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div style={{ margin: 15 }}>
+                <h1> Cast </h1>
+                <div className="companies">
+                  {creditsData?.cast?.map((cast, index) => (
+                    <div>
+                      {cast.profile_path && (
+                        <img
+                          style={{width: 110, height: 150}}
+                          src={`https://image.tmdb.org/t/p/w200${cast.profile_path}`}
+                        />
+                      )}
+                      <p key={index}>{cast.name}</p>
                     </div>
                   ))}
                 </div>
