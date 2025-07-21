@@ -10,11 +10,17 @@ import DetailPage from "./pages/DetailPage";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: "/details/:id",
-    element: <DetailPage />,
+    element: <App />, // App ana layout
+    children: [
+      {
+        index: true, // yani path: "/" için
+        element: <HomePage />,
+      },
+      {
+        path: "details/:id",
+        element: <DetailPage />,
+      },
+    ],
   },
 ]);
 
