@@ -5,8 +5,7 @@ body {
   width: 100%;
   height: 100%;
   background: hsl(0 0% 6%);
-  display: flex;
-  justify-content: center;
+  
 }
 
 .cursor{
@@ -45,7 +44,7 @@ body {
 .top-container{
   display: flex;
   flex-direction: row;
-  margin: 20px;
+
 }
 
 .vote-outline{
@@ -65,8 +64,11 @@ body {
 }
 
 .votes-container{
+  margin: 30px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .vote{
@@ -85,18 +87,27 @@ body {
 
 .movie-image{
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  border-radius: 16px;
-  width: 100%;
-  object-fit: cover;
-  /*
+  min-width: auto;
+  max-width: 550px;
   mask-image: linear-gradient(
-    90deg,
+    270deg, 
     transparent,
-    #000 15%,
-    #000 85%,
+    #000 70%,
+    #000 100%,
     transparent 100%
   );
-  */
+  
+}
+
+.genres-container{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.top-info-div{
+  margin-left: 30px;
 }
 
 p{
@@ -105,8 +116,7 @@ p{
 
 .info-div{
   margin: 15px;
-  border-radius: 15px;
-  background: rgba(252, 252, 252, 0.4);
+  background: rgba(252, 252, 252, 0.281);
   padding-bottom: 25px;
   padding-left: 15px;
   display: grid;
@@ -116,25 +126,54 @@ p{
 
 .companies{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 200px));
+  gap: 30px;
+  text-align: center;
+  justify-items: center;
+  margin-top: 10px;
+}
+
+.vote-average{
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .detail-container{
   margin: 15px;
-  background: rgba(255, 255, 255, 0.26);
+  background: rgba(0, 0, 0, 0.26);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px); 
   display: flex;
   flex-direction: column;
-  border-radius: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   max-width: 1200px;
   transition: all 0.3s ease-in-out;
 }
 
+.casts{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  text-align: center;
+  justify-items: center;
+  margin-top: 10px;
+}
+
+.logo-img{
+  width: 150px;
+  height: 100px;
+}
+
 .companies img {
   gap: 24px;
+}
+
+.cast-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
@@ -157,8 +196,16 @@ p{
   text-align: center;
 }
 
-p {
+p{
   font-size: large;
   line-height: 1.6;
+  color: aliceblue;
 }
+
+
+h1, h2, h3, h4, h5 {
+  color: aliceblue;
+}
+
+
 

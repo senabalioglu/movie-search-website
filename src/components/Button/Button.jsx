@@ -3,7 +3,7 @@ import './Button.css'
 function Button({ onPress, buttonClassName }) {
   return (
     <div onClick={onPress} className={buttonClassName}>
-      <p>Detayları gör</p>
+      <p style={{color: 'black'}} >Detayları gör</p>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../components/Input/Input";
 import Card from "../components/Card/Card";
+import HeaderSlider from "../components/HeaderSlider/HeaderSlider";
 
 function HomePage() {
 
@@ -60,8 +61,7 @@ function HomePage() {
           className={"search-input-div"}
           onSearch={searchMovies}
           onChangeInput={(e) => setQuery(e.target.value)}
-        />
-        
+        />  
           <div className="container" >
           {movies.map((movie) => (
             movie.backdrop_path !== null ?

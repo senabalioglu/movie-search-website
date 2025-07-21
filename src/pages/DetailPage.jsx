@@ -1,12 +1,16 @@
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
+import { FaStar } from "react-icons/fa6";
 
 function DetailPage() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [imgPath, setImgPath] = useState("");
   const [creditsData, setCreditsData] = useState(null);
+  const [showAllCast, setShowAllCast] = useState(false);
   const VITE_TMDB_KEY = "4809431e976e960f71c692b27469b8d2";
 
   useEffect(() => {
@@ -58,6 +62,12 @@ function DetailPage() {
     }
   }, [movie]);
 
+  const formattedRevenue = movie?.revenue.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }
+  )
+
   return (
     <>
       {movie ? (
@@ -67,22 +77,59 @@ function DetailPage() {
               <div>
                 <img
                   className="movie-image"
-                  src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                 />
+              </div>
+
+              <div className="top-info-div">
                 <div className="votes">
                   <h1 style={{ fontSize: 50 }}>
                     {movie.title || movie.original_title}
                   </h1>
                 </div>
-              </div>
-              <div className="inner-vote-container">
-                <p style={{ fontSize: 30 }}>{movie.overview}</p>
-                <div className="votes-container">
-                  <div className="vote">
-                    <p style={{ fontSize: 20 }}>{movie.vote_average}</p>
-                  </div>
-                  <div className="vote">
-                    <p style={{ fontSize: 20 }}>{movie.vote_count}</p>
+
+                <div className="genres-container">
+                  <h2>Genres: </h2>
+                  {movie.genres.map((genre, index) => {
+                    return (
+                      <p style={{ fontSize: 25 }} key={index}>
+                        {genre.name}
+                      </p>
+                    );
+                  })}
+                </div>
+
+                <div>
+                  <h2>Collection</h2>
+                  <p>
+                    {" "}
+                    {movie?.belongs_to_collection?.name
+                      ? movie.belongs_to_collection.name
+                      : "null"}{" "}
+                  </p>
+                </div>
+
+                <div>
+                  <h2>Popularity</h2>
+                  <p> {movie.popularity} </p>
+                </div>
+
+                <div>
+                  <h2>Revenue</h2>
+                  <p>{formattedRevenue}</p>
+                </div>
+
+                <div>
+                  <div>
+                    <p style={{ fontSize: 25, fontWeight: "bold" }}>
+                      {" "}
+                      Vote Average:{" "}
+                    </p>
+                    <p className="vote-average">
+                      {" "}
+                      {movie.vote_average.toFixed(1)}/10{" "}
+                      {<FaStar style={{ color: "yellow" }} />}{" "}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -90,28 +137,8 @@ function DetailPage() {
 
             <div>
               <div className="info-div">
-                <div>
-                  <h2>Genres</h2>
-                  {movie.genres.map((genre, index) => {
-                    return (
-                      <li style={{ fontSize: 25 }} key={index}>
-                        {genre.name}
-                      </li>
-                    );
-                  })}
-                </div>
-                <div>
-                  <h2>Collection</h2>
-                  <h3>
-                    {" "}
-                    {movie?.belongs_to_collection?.name
-                      ? movie.belongs_to_collection.name
-                      : "null"}{" "}
-                  </h3>
-                </div>
-                <div>
-                  <h2>Popularity</h2>
-                  <h3> {movie.popularity} </h3>
+                <div className="inner-vote-container">
+                  <p style={{ fontSize: 30 }}>{movie.overview}</p>
                 </div>
               </div>
 
@@ -123,6 +150,7 @@ function DetailPage() {
                       <p>{company.name}</p>
                       {company.logo_path && (
                         <img
+                          className="logo-img"
                           src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
                         />
                       )}
@@ -132,18 +160,50 @@ function DetailPage() {
               </div>
               <div style={{ margin: 15 }}>
                 <h1> Cast </h1>
-                <div className="companies">
-                  {creditsData?.cast?.map((cast, index) => (
-                    <div>
-                      {cast.profile_path && (
-                        <img
-                          style={{width: 110, height: 150}}
-                          src={`https://image.tmdb.org/t/p/w200${cast.profile_path}`}
-                        />
+                <div className="casts">
+                  {showAllCast
+                    ? creditsData?.cast?.map((cast, index) =>
+                        cast.name && cast.profile_path ? (
+                          <div className="cast-container" key={index}>
+                            <img
+                              style={{
+                                width: 110,
+                                height: 110,
+                                borderRadius: 75,
+                                borderWidth: 5,
+                              }}
+                              src={`https://image.tmdb.org/t/p/w200${cast.profile_path}`}
+                              alt={cast.name}
+                            />
+                            <p style={{ fontWeight: "bold" }}>{cast.name}</p>
+                          </div>
+                        ) : null
+                      )
+                    : creditsData?.cast?.slice(0, 8).map((cast, index) =>
+                        cast.name && cast.profile_path ? (
+                          <div className="cast-container" key={index}>
+                            <img
+                              style={{
+                                width: 110,
+                                height: 110,
+                                borderRadius: 75,
+                                borderWidth: 5,
+                              }}
+                              src={`https://image.tmdb.org/t/p/w200${cast.profile_path}`}
+                              alt={cast.name}
+                            />
+                            <p style={{ fontWeight: "bold" }}>{cast.name}</p>
+                          </div>
+                        ) : null
                       )}
-                      <p key={index}>{cast.name}</p>
-                    </div>
-                  ))}
+                </div>
+
+                <div onClick={() => setShowAllCast(!showAllCast)}>
+                  {showAllCast ? (
+                    <IoIosArrowUp style={{ color: "aliceblue" }} />
+                  ) : (
+                    <IoIosArrowDown style={{ color: "aliceblue" }} />
+                  )}
                 </div>
               </div>
             </div>
