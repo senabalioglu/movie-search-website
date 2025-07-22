@@ -13,3 +13,43 @@
     transparent 100%
   );
 }
+
+.slider-container p h2{
+    color: #000;
+}
+
+.slider-text{
+    margin: 15px;
+}
+
+.slider-text p{
+    font-size: 20px;
+}
+
+.slider-image-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.arrow-left {
+  left: 10px;
+}
+
+.arrow-right {
+  right: 10px;
+}
+
+.arrow svg {
+  font-size: 30px;
+  color: white;
+}

@@ -28,12 +28,14 @@ function HeaderSlider() {
       });
   }, []);
 
-    const handleNext = () => {
+  const handleNext = () => {
     setHeaderIndex((prev) => (prev + 1) % headerData.length);
   };
 
   const handlePrev = () => {
-    setHeaderIndex((prev) => (prev - 1 + headerData.length) % headerData.length);
+    setHeaderIndex(
+      (prev) => (prev - 1 + headerData.length) % headerData.length
+    );
   };
 
   if (error) {
@@ -50,10 +52,9 @@ function HeaderSlider() {
     <div className="slider-container" key={hd.id}>
       <div className="slider-image-container">
         {headerIndex > 0 && (
-          <IoIosArrowBack
-            onClick={handlePrev}
-            style={{ color: "white", cursor: "pointer", fontSize: 30 }}
-          />
+          <div className="arrow arrow-left">
+            <IoIosArrowBack onClick={handlePrev} />
+          </div>
         )}
         <img
           className="header-img"
@@ -61,27 +62,22 @@ function HeaderSlider() {
           alt={hd.title}
         />
         {headerIndex < headerData.length - 1 && (
-          <IoIosArrowForward
-            onClick={handleNext}
-            style={{ color: "white", cursor: "pointer", fontSize: 30 }}
-          />
+          <div className="arrow arrow-right">
+            <IoIosArrowForward onClick={handleNext} />
+          </div>
         )}
       </div>
+
       <div className="slider-text">
         <h2 style={{ color: "white" }}>{hd.title}</h2>
-        <p>
-          {hd.overview.length < 150
-            ? hd.overview
-            : hd.overview.slice(0, 150) + "..."}
-        </p>
+        <p>{hd.overview.length < 250 ? hd.overview : hd.overview.slice(0, 100) + "..."}</p>
         <p style={{ color: "white" }}>
-          {hd.vote_average.toFixed(1)} / 10 <FaStar style={{ color: "yellow" }} />
+          {hd.vote_average.toFixed(1)} / 10{" "}
+          <FaStar style={{ color: "yellow" }} />
         </p>
       </div>
     </div>
   );
 }
-
-//{title.length < 25 ? title : title.slice(0, 20) + "..."}
 
 export default HeaderSlider;

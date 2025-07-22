@@ -7,7 +7,7 @@ function HomePage() {
   return (
     <div>
       <HeaderSlider />
-      
+      <h1>Top Rated</h1>
     </div>
   );
 }
