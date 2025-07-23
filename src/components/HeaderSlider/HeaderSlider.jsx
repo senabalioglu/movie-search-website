@@ -27,6 +27,7 @@ function HeaderSlider() {
         return <p> Hata: {err} </p>;
       });
   }, []);
+  
 
   const handleNext = () => {
     setHeaderIndex((prev) => (prev + 1) % headerData.length);
