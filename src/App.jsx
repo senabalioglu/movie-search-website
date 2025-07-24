@@ -13,7 +13,7 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="app-container">
       <Input
         className="search-input-div"
         onChangeInput={(e) => setQuery(e.target.value)}

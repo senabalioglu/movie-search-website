@@ -36,15 +36,25 @@ function HomePage() {
     <div>
       <HeaderSlider />
       <h1>Top Rated</h1>
-      <div className="container" >
-        {topRatedData.map((top, index) => (
-          <Card
-          navFunc={() => goToDetail(top)}
-          title={top.original_title}
-          movieDate={top.release_date?.split("-")[0]}
-          cardImg={top.poster_path}
-          //className={}
-          />
+      <div className="top-rated-container" >
+        {topRatedData.map((top) => (
+          <div className="top-rated-card" key={top.id} onClick={() => goToDetail(top)} >
+            <div >
+              <img
+            src={`https://image.tmdb.org/t/p/w300${top.poster_path}`}
+            />
+            <div>
+              <h3 style={{ color: "aliceblue" }}>
+                {top.title.length < 25
+                  ? top.title
+                  : top.title.slice(0, 20) + "..."}
+              </h3>
+              <p style={{ color: "aliceblue" }}>
+                {top.release_date?.split("-")[0]}
+              </p>
+            </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
