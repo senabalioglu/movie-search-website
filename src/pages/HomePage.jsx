@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import HeaderSlider from "../components/HeaderSlider/HeaderSlider";
 import { useLocation, useNavigate } from "react-router-dom";
 import Card from "../components/Card/Card";
+import ScrollableSection from "../components/ScrollableSection/ScrollableSection";
 
 function HomePage() {
   const [topRatedData, setTopRatedData] = useState([]);
@@ -52,25 +53,14 @@ function HomePage() {
 
       <div className="top-rated-container">
         {topRatedData.map((top) => (
-          <div
-            className="top-rated-card"
-            key={top.id}
-            onClick={() => goToDetail(top)}
-          >
-            <div>
-              <img src={`https://image.tmdb.org/t/p/w300${top.poster_path}`} />
-              <div>
-                <h3 style={{ color: "aliceblue" }}>
-                  {top.title.length < 25
-                    ? top.title
-                    : top.title.slice(0, 20) + "..."}
-                </h3>
-                <p style={{ color: "aliceblue" }}>
-                  {top.release_date?.split("-")[0]}
-                </p>
-              </div>
-            </div>
-          </div>
+          <ScrollableSection 
+          key={top.id}
+          onClickFunc={() => goToDetail(top)}
+          compKey={top.id}
+          posterPath={top.poster_path}
+          formattedTitle={ top.title.length < 25 ? top.title : top.title.slice(0, 20) + "..." }
+          date={ top.release_date?.split("-")[0] }
+          />
         ))}
       </div>
       <h1 style={{ margin: 10 }}>Popular</h1>
@@ -78,25 +68,14 @@ function HomePage() {
       <div className="top-rated-container">
         {
           popularData.map((popular) => (
-            <div
-            className="top-rated-card"
-            key={popular.id}
-            onClick={() => goToDetail(popular)}
-          >
-            <div>
-              <img src={`https://image.tmdb.org/t/p/w300${popular.poster_path}`} />
-              <div>
-                <h3 style={{ color: "aliceblue" }}>
-                  {popular.title.length < 25
-                    ? popular.title
-                    : popular.title.slice(0, 20) + "..."}
-                </h3>
-                <p style={{ color: "aliceblue" }}>
-                  {popular.release_date?.split("-")[0]}
-                </p>
-              </div>
-            </div>
-          </div>
+           <ScrollableSection 
+          key={popular.id}
+          onClickFunc={() => goToDetail(popular)}
+          compKey={popular.id}
+          posterPath={popular.poster_path}
+          formattedTitle={ popular.title.length < 25 ? popular.title : popular.title.slice(0, 20) + "..." }
+          date={ popular.release_date?.split("-")[0] }
+          />
           ))
         }
       </div>
