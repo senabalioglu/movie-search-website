@@ -9,6 +9,8 @@ function HomePage() {
   const [popularData, setPopularData] = useState([]);
   const navigate = useNavigate();
   const VITE_TMDB_KEY = "4809431e976e960f71c692b27469b8d2";
+  const [topRatedDisplay, setTopRatedDisplay] = useState(false);
+  const [popularDisplay, setPopularDisplay] = useState(false);
 
   useEffect(() => {
     fetch(
@@ -46,43 +48,69 @@ function HomePage() {
     navigate(`/details/${top.id}`);
   };
 
+  const displaySection = (type) => {
+    if (type == "toprated") {
+      setTopRatedDisplay(!topRatedDisplay);
+    }
+    if (type == "popular") {
+      setPopularDisplay(!popularDisplay);
+    }
+  };
+
   return (
     <div>
       <HeaderSlider />
-      <h1 style={{ margin: 10 }}>Top Rated</h1>
 
-      <div className="top-rated-container">
-        {topRatedData.map((top) => (
-          <ScrollableSection
-            key={top.id}
-            onClickFunc={() => goToDetail(top)}
-            compKey={top.id}
-            posterPath={top.poster_path}
-            formattedTitle={
-              top.title.length < 25 ? top.title : top.title.slice(0, 20) + "..."
-            }
-            date={top.release_date?.split("-")[0]}
-          />
-        ))}
-      </div>
-      <h1 style={{ margin: 10 }}>Popular</h1>
+      <button onClick={() => displaySection("toprated")}> Top Rated </button>
+      <button onClick={() => displaySection("popular")}> Popular </button>
+      {topRatedDisplay ? (
+        <>
+          <h1 style={{ margin: 10 }}>Top Rated</h1>
+          <div className="top-rated-container">
+            {topRatedData.map((top) => (
+              <ScrollableSection
+                key={top.id}
+                onClickFunc={() => goToDetail(top)}
+                compKey={top.id}
+                posterPath={top.poster_path}
+                formattedTitle={
+                  top.title.length < 25
+                    ? top.title
+                    : top.title.slice(0, 20) + "..."
+                }
+                date={top.release_date?.split("-")[0]}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
 
-      <div className="top-rated-container">
-        {popularData.map((popular) => (
-          <ScrollableSection
-            key={popular.id}
-            onClickFunc={() => goToDetail(popular)}
-            compKey={popular.id}
-            posterPath={popular.poster_path}
-            formattedTitle={
-              popular.title.length < 25
-                ? popular.title
-                : popular.title.slice(0, 20) + "..."
-            }
-            date={popular.release_date?.split("-")[0]}
-          />
-        ))}
-      </div>
+      {popularDisplay ? (
+        <>
+          <h1 style={{ margin: 10 }}>Popular</h1>
+
+          <div className="top-rated-container">
+            {popularData.map((popular) => (
+              <ScrollableSection
+                key={popular.id}
+                onClickFunc={() => goToDetail(popular)}
+                compKey={popular.id}
+                posterPath={popular.poster_path}
+                formattedTitle={
+                  popular.title.length < 25
+                    ? popular.title
+                    : popular.title.slice(0, 20) + "..."
+                }
+                date={popular.release_date?.split("-")[0]}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
